@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import co.ceiba.parqueadero.exception.ParqueaderoExcepciones;
 import co.ceiba.parqueadero.modelo.Parqueadero;
 import co.ceiba.parqueadero.modelo.Vehiculo;
-import co.ceiba.parqueadero.valoresfijos.ValoresFijos;
+import co.ceiba.parqueadero.utils.Mensajes;
 
 
 @Transactional
 @Repository
-public class ParqueaderoRepositoryImplementacion implements ParqueaderoRepository {
+public class ParqueaderoRepositoryImpl implements ParqueaderoRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -34,7 +34,7 @@ public class ParqueaderoRepositoryImplementacion implements ParqueaderoRepositor
 			entityManager.persist(parq);
 			return true;
 		}catch(Exception e) {
-			throw new ParqueaderoExcepciones(ValoresFijos.ERROR_REGISTRO,e);
+			throw new ParqueaderoExcepciones(Mensajes.ERROR_REGISTRO,e);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class ParqueaderoRepositoryImplementacion implements ParqueaderoRepositor
 			if(parq.isEmpty()) {return null;}
 			return parq.get(0);
 		}catch (Exception e) {
-			throw new ParqueaderoExcepciones(ValoresFijos.ERROR_OBTENER_SIN_SALIR,e);
+			throw new ParqueaderoExcepciones(Mensajes.ERROR_OBTENER_SIN_SALIR,e);
 		}
 	}
 	
@@ -65,7 +65,7 @@ public class ParqueaderoRepositoryImplementacion implements ParqueaderoRepositor
 			parq = (List<Parqueadero>) entityManager.createQuery(hql).getResultList();
 			return parq;
 		}catch (Exception e) {
-			throw new ParqueaderoExcepciones(ValoresFijos.ERROR_OBTENER_TODOS_SIN_SALIR,e);
+			throw new ParqueaderoExcepciones(Mensajes.ERROR_OBTENER_TODOS_SIN_SALIR,e);
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class ParqueaderoRepositoryImplementacion implements ParqueaderoRepositor
 			entityManager.flush();
 			return parq;
 		} catch (Exception e) {
-			throw new ParqueaderoExcepciones(ValoresFijos.ERROR_ACTUALIZAR_VEHICULO, e);
+			throw new ParqueaderoExcepciones(Mensajes.ERROR_ACTUALIZAR_VEHICULO, e);
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class ParqueaderoRepositoryImplementacion implements ParqueaderoRepositor
 			String hql = "SELECT parq FROM Parqueadero as parq INNER JOIN parq.vehiculo as carro WHERE parq.fechaSalida is null AND carro.tipo=2";
 			return (List<Parqueadero>) entityManager.createQuery(hql).getResultList();
 		}catch(Exception e) {
-			throw new ParqueaderoExcepciones(ValoresFijos.ERROR_OBTENER_CARROS, e);
+			throw new ParqueaderoExcepciones(Mensajes.ERROR_OBTENER_CARROS, e);
 		}
 	}
 
@@ -102,7 +102,7 @@ public class ParqueaderoRepositoryImplementacion implements ParqueaderoRepositor
 			String hql = "SELECT parq FROM Parqueadero as parq INNER JOIN parq.vehiculo as moto WHERE parq.fechaSalida is null AND moto.tipo=1";
 			return (List<Parqueadero>) entityManager.createQuery(hql).getResultList();
 		}catch(Exception e) {
-			throw new ParqueaderoExcepciones(ValoresFijos.ERROR_OBTENER_MOTOS, e);
+			throw new ParqueaderoExcepciones(Mensajes.ERROR_OBTENER_MOTOS, e);
 		}
 	}
 	

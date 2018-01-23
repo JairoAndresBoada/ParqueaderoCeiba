@@ -13,12 +13,12 @@ import co.ceiba.parqueadero.exception.ParqueaderoServiciosExcepciones;
 import co.ceiba.parqueadero.logica.ParqueaderoLogica;
 import co.ceiba.parqueadero.modelo.Parqueadero;
 import co.ceiba.parqueadero.repositorio.ParqueaderoRepository;
-import co.ceiba.parqueadero.valoresfijos.Constantes;
-import co.ceiba.parqueadero.valoresfijos.ValoresFijos;
+import co.ceiba.parqueadero.utils.Constantes;
+import co.ceiba.parqueadero.utils.Mensajes;
 
 @Transactional
 @Service
-public class ParqueaderoServiceImplementacion implements ParqueaderoService {
+public class ParqueaderoServiceImpl implements ParqueaderoService {
 	
 	@Autowired
 	ParqueaderoLogica parqueaderoLogica;
@@ -31,15 +31,15 @@ public class ParqueaderoServiceImplementacion implements ParqueaderoService {
 	@Override
 	public double salidaVehiculoParqueadero(String placa) throws ParqueaderoServiciosExcepciones {
 		if(placa.isEmpty()) {
-			throw new ParqueaderoServiciosExcepciones(ValoresFijos.PLACA_VACIA);
+			throw new ParqueaderoServiciosExcepciones(Mensajes.PLACA_VACIA);
 		}
 		if(!placa.matches(Constantes.PATRON_PLACA)) {
-			throw new ParqueaderoServiciosExcepciones(ValoresFijos.PLACA_INVALIDA);
+			throw new ParqueaderoServiciosExcepciones(Mensajes.PLACA_INVALIDA);
 		}
 		try {
 			return parqueaderoLogica.salidaParqueadero(placa);
 		} catch (ParqueaderoLogicaExcepciones e) {
-			throw new ParqueaderoServiciosExcepciones(ValoresFijos.ERROR_SALIDA_VEHICULO,e);
+			throw new ParqueaderoServiciosExcepciones(Mensajes.ERROR_SALIDA_VEHICULO,e);
 		}
 }
 
@@ -51,13 +51,13 @@ public class ParqueaderoServiceImplementacion implements ParqueaderoService {
 	@Override
 	public boolean ingresarVehiculoParqueadero(String placa, int cilindraje) throws ParqueaderoServiciosExcepciones {
 		if(placa.isEmpty()) {
-			throw new ParqueaderoServiciosExcepciones(ValoresFijos.PLACA_VACIA);
+			throw new ParqueaderoServiciosExcepciones(Mensajes.PLACA_VACIA);
 		}
 		if(!placa.matches(Constantes.PATRON_PLACA)) {
-			throw new ParqueaderoServiciosExcepciones(ValoresFijos.PLACA_INVALIDA);
+			throw new ParqueaderoServiciosExcepciones(Mensajes.PLACA_INVALIDA);
 		}
 		if(cilindraje <0) {
-			throw new ParqueaderoServiciosExcepciones(ValoresFijos.CILINDRAJE_INVALIDO);
+			throw new ParqueaderoServiciosExcepciones(Mensajes.CILINDRAJE_INVALIDO);
 		}
 		try {
 			return parqueaderoLogica.ingresarVehiculo(placa, cilindraje);

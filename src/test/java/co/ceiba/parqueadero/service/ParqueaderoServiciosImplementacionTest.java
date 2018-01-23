@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.servicios;
+package co.ceiba.parqueadero.service;
 
 import org.junit.Assert;
 import org.junit.Test;

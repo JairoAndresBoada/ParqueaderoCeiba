@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.repositorio;
+package co.ceiba.parqueadero.repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +22,7 @@ import co.ceiba.parqueadero.repositorio.ParqueaderoRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ParqueaderoRepositorioImplementacionTest {
+public class ParqueaderoRepositoryImplTest {
 	
 	@Mock
 	private ParqueaderoRepository parqueaderoRepo;

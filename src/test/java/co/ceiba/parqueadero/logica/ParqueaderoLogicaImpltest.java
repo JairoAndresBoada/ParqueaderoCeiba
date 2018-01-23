@@ -23,7 +23,7 @@ import co.ceiba.parqueadero.modelo.Vehiculo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ParqueaderoLogicaImplementacionTest {
+public class ParqueaderoLogicaImpltest {
 
 	@Mock
 	ParqueaderoLogica parqueaderoLogica;

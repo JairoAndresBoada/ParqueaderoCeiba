@@ -15,8 +15,8 @@ import co.ceiba.parqueadero.modelo.Parqueadero;
 import co.ceiba.parqueadero.modelo.Vehiculo;
 import co.ceiba.parqueadero.repositorio.ParqueaderoRepository;
 import co.ceiba.parqueadero.repositorio.VehiculoRepository;
-import co.ceiba.parqueadero.utils.Constantes;
-import co.ceiba.parqueadero.utils.Mensajes;
+import co.ceiba.parqueadero.valoresfijos.Constantes;
+import co.ceiba.parqueadero.valoresfijos.ValoresFijos;
 
 
 @Transactional
@@ -73,7 +73,7 @@ public class ParqueaderoLogicaImpl implements ParqueaderoLogica {
 			Parqueadero parq=parqueaderoRepository.actualizar(placa, salida);
 			return calcularMonto(parq);
 		}catch(Exception e) {
-			throw new ParqueaderoLogicaExcepciones(Mensajes.ERROR_SALIDA_VEHICULO,e);
+			throw new ParqueaderoLogicaExcepciones(ValoresFijos.ERROR_SALIDA_VEHICULO,e);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class ParqueaderoLogicaImpl implements ParqueaderoLogica {
 			parqueaderoRepository.insertar(vehiculo, fecha);
 			return true;
 		}catch(Exception e) {
-			throw new ParqueaderoLogicaExcepciones(Mensajes.ERROR_INSERTAR,e);
+			throw new ParqueaderoLogicaExcepciones(ValoresFijos.ERROR_INSERTAR,e);
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class ParqueaderoLogicaImpl implements ParqueaderoLogica {
 	public void validarExistencia(String placa) throws ParqueaderoExcepciones {
 		Parqueadero parq=parqueaderoRepository.obtenerPorVehiculoSinSalir(placa);
 		if(parq!=null) {
-			throw new ParqueaderoExcepciones(Mensajes.ERROR_DUPLICADO);
+			throw new ParqueaderoExcepciones(ValoresFijos.ERROR_DUPLICADO);
 		}
 	}
 	
@@ -111,7 +111,7 @@ public class ParqueaderoLogicaImpl implements ParqueaderoLogica {
 	public void validarRestricciones(String placa, Calendar fecha) throws ParqueaderoExcepciones {
 		if(placa.substring(0, 1).equalsIgnoreCase(Constantes.LETRA_PLACA) && 
 				(Constantes.getDiasRestringidos().contains(fecha.get(Calendar.DAY_OF_WEEK))))  {
-			throw new ParqueaderoExcepciones(Mensajes.RESTRICCION_PLACA);
+			throw new ParqueaderoExcepciones(ValoresFijos.RESTRICCION_PLACA);
 		}
 	}
 	
@@ -120,10 +120,10 @@ public class ParqueaderoLogicaImpl implements ParqueaderoLogica {
 		int cantidadCarros=parqueaderoRepository.obtenerCarros().size();
 		int cantidadMotos=parqueaderoRepository.obtenerMotos().size();
 		if(cantidadCarros>=Constantes.CANTIDAD_MAXIMA_CARROS && cilindraje==0) {
-			throw new ParqueaderoExcepciones(Mensajes.CAPACIDAD_CARROS);
+			throw new ParqueaderoExcepciones(ValoresFijos.CAPACIDAD_CARROS);
 		}
 		if(cantidadMotos>=Constantes.CANTIDAD_MAXIMA_MOTOS && cilindraje >0) {
-			throw new ParqueaderoExcepciones(Mensajes.CAPACIDAD_MOTOS);
+			throw new ParqueaderoExcepciones(ValoresFijos.CAPACIDAD_MOTOS);
 		}
 	}
 

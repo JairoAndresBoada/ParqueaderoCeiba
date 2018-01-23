@@ -13,7 +13,7 @@ import co.ceiba.parqueadero.exception.ParqueaderoExcepciones;
 import co.ceiba.parqueadero.exception.ParqueaderoServiciosExcepciones;
 import co.ceiba.parqueadero.modelo.Parqueadero;
 import co.ceiba.parqueadero.servicios.ParqueaderoService;
-import co.ceiba.parqueadero.utils.Mensajes;
+import co.ceiba.parqueadero.valoresfijos.ValoresFijos;
 
 
 @RestController
@@ -49,7 +49,7 @@ public class ParqueaderoControlador {
 			try {
 				return parqueaderoService.obtenerVehiculos();
 			} catch (ParqueaderoExcepciones e) {
-				throw new ParqueaderoServiciosExcepciones(Mensajes.ERROR_OBTENER_TODOS_SIN_SALIR);
+				throw new ParqueaderoServiciosExcepciones(ValoresFijos.ERROR_OBTENER_TODOS_SIN_SALIR);
 			} 
 	 }
 }

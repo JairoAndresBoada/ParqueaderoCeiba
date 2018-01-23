@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.repository;
+package co.ceiba.parqueadero.repositorio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import co.ceiba.parqueadero.repositorio.VehiculoRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VehiculoRepositoryImplTest {
+public class VehiculoRepositorioImplementacionTest {
 	
 	@Mock
 	private VehiculoRepository vehiculoRepo;

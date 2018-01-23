@@ -1,9 +1,9 @@
-package co.ceiba.parqueadero.utils;
+package co.ceiba.parqueadero.valoresfijos;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class Mensajes {
+public class ValoresFijos {
 	
 	//VehiculoRepository
 	public static final String ERROR_TODOS_LOS_VEHICULOS="Error al obtener todos los vehiculos de la BD";
@@ -32,5 +32,5 @@ public class Mensajes {
 	public static final String PLACA_INVALIDA="No se ha ingresado una placa valida";
 	public static final String CILINDRAJE_INVALIDO="El cilindraje no puede ser menor a cero";
 	
-	private Mensajes() {}
+	private ValoresFijos() {}
 }

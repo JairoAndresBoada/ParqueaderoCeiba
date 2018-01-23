@@ -12,11 +12,11 @@ import co.ceiba.parqueadero.exception.VehiculoExcepciones;
 import co.ceiba.parqueadero.modelo.Carro;
 import co.ceiba.parqueadero.modelo.Moto;
 import co.ceiba.parqueadero.modelo.Vehiculo;
-import co.ceiba.parqueadero.utils.Mensajes;
+import co.ceiba.parqueadero.valoresfijos.ValoresFijos;
 
 @Transactional
 @Repository
-public class VehiculoRepositoryImpl implements VehiculoRepository {
+public class VehiculoRepositoryImplementcion implements VehiculoRepository {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -29,7 +29,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 			String hql = "FROM Vehiculo";
 			return (List<Vehiculo>) entityManager.createQuery(hql).getResultList();
 		}catch(Exception e) {
-			throw new VehiculoExcepciones(Mensajes.ERROR_TODOS_LOS_VEHICULOS, e);
+			throw new VehiculoExcepciones(ValoresFijos.ERROR_TODOS_LOS_VEHICULOS, e);
 		}
 	}
 
@@ -46,7 +46,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 			entityManager.persist(vehiculo);
 			return vehiculo;
 		}catch(Exception e) {
-			throw new VehiculoExcepciones(Mensajes.ERROR_INSERTAR,e); 
+			throw new VehiculoExcepciones(ValoresFijos.ERROR_INSERTAR,e); 
 		}
 	}
 
@@ -63,7 +63,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 			}
 			return null;
 		}catch(Exception e) {
-			throw new VehiculoExcepciones(Mensajes.ERROR_OBTENER_VEHICULO,e);
+			throw new VehiculoExcepciones(ValoresFijos.ERROR_OBTENER_VEHICULO,e);
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
 			String hql = "FROM Moto moto WHERE moto.placa = ?";
 			return (Moto) entityManager.createQuery(hql).setParameter(1, placa).getResultList().get(0);
 		}catch(Exception e) {
-			throw new VehiculoExcepciones(Mensajes.ERROR_OBTENER_MOTO, e);
+			throw new VehiculoExcepciones(ValoresFijos.ERROR_OBTENER_MOTO, e);
 		}
 	}
 }
